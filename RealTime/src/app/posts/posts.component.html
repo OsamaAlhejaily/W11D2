@@ -1,0 +1,61 @@
+<!-- posts.component.html with debug info -->
+<div class="debug-border">
+  <h2>Posts Component</h2>
+
+  <!-- Debug information -->
+  <div class="debug-info">
+    <p><strong>Component loaded:</strong> Yes</p>
+    <p><strong>API URL:</strong> {{ apiUrl }}</p>
+    <p><strong>Posts loaded:</strong> {{ posts.length }}</p>
+    <p><strong>Connection State:</strong> {{ connectionState }}</p>
+  </div>
+
+  <!-- Loading indicator -->
+  <div *ngIf="posts.length === 0" class="loading">
+    Loading posts... If this message persists, check your API connection.
+  </div>
+
+  <!-- Regular posts display -->
+  <div
+    *ngFor="let post of posts"
+    class="post-card"
+    [ngClass]="{ updated: post.isUpdated }"
+  >
+    <h3>{{ post.title }}</h3>
+
+    <div class="post-content">
+      <p>Sample post content.</p>
+    </div>
+
+    <div class="post-actions">
+      <button (click)="likePost(post.id)" class="like-button">
+        Like ({{ post.likeCount }})
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .debug-border {
+    border: 2px dashed red;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .debug-info {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+</style>
